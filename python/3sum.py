@@ -15,7 +15,6 @@ def three_sum(numbers: List[int]) -> Set[Tuple[int]]:
             dupli_map[n] = False
         elif not dupli_map[n]:
             dupli_map[n] = True
-    print()
     for i in range(len(numbers)):
         for j in range(i + 1, len(numbers)):
             find_number = -(numbers[i] + numbers[j])
