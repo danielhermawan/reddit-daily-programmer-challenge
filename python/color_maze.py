@@ -13,7 +13,7 @@ def find_maze(sequence: List[str], maze: List[List[str]]) -> List[Tuple]:
     path = []
     for j in range(len(maze[row])):
         if maze[row][j] == sequence[seq_index]:
-            path_temp = j, row, sequence[seq_index]
+            path_temp = j, row, seq_index
             path.append(path_temp)
             while True:
                 seq_index = (seq_index + 1) % len(sequence)
@@ -23,15 +23,15 @@ def find_maze(sequence: List[str], maze: List[List[str]]) -> List[Tuple]:
                 # Check left path
                 if path_temp[0] != 0:
                     if maze[path_temp[1]][path_temp[0] - 1] == sequence[seq_index] and left_path not in path:
-                        path_temp = left_path + (sequence[seq_index],)
+                        path_temp = left_path + (seq_index,)
                 # Check right path
                 if path_temp[0] != col:
                     if maze[path_temp[1]][path_temp[0] + 1] == sequence[seq_index] and right_path not in path:
-                        path_temp = right_path + (sequence[seq_index],)
+                        path_temp = right_path + (seq_index,)
                 # Check top path
                 if path_temp[1] != 0:
                     if maze[path_temp[1] - 1][path_temp[0]] == sequence[seq_index] and top_path not in path:
-                        path_temp = top_path + (sequence[seq_index],)
+                        path_temp = top_path + (seq_index,)
                 else:
                     break
                 if path_temp[0] == path[-1][0] and path_temp[1] == path[-1][1]:
@@ -54,11 +54,14 @@ def new_find_maze(sequence: List[str], maze: List[List[str]]) -> List[Tuple]:
             path.append((col, row, seq_index))
             seq_index = (seq_index + 1) % len(sequence)
             # Left path
-            if col != 0 and row != len(maze[0]) - 1:
+            if col != 0:
                 possible_path.append((col - 1, row, seq_index))
             # Right Path
-            if col != len(maze[0]) - 1 and row != len(maze[0]) - 1:
+            if col != len(maze[0]) - 1:
                 possible_path.append((col + 1, row, seq_index))
+            # Bottom path
+            if row != len(maze) - 1:
+                possible_path.append((col, row + 1, seq_index))
             # Top path
             if row != 0:
                 possible_path.append((col, row - 1, seq_index))
