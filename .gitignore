@@ -99,3 +99,8 @@ ENV/
 .mypy_cache/
 
 .idea/
+
+python/qs.py
+/python/LinkedList.py
+/python/qs.py
+/python/string.py
