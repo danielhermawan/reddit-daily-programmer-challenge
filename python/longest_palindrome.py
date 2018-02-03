@@ -3,7 +3,7 @@ def check_palindrome(stg):
 
 def longest_palindrome(stg):
     if len(stg) == 0:
-        return ""
+        return stg
     for i in range(len(stg), 0, -1):
         j = 0
         while j + i <= len(stg):
